@@ -27,6 +27,21 @@ game = {
       }
       actors = nextAry;
 
+      // draw player
+      currStep = playerChar.currentFrame || 0;
+      if (currStep < 30) {
+        y = 350 + (1 * currStep);
+        drawSprite(ctx, 'player', 0, 440, y);
+      }else{
+        y = 350 + (1 * (-(currStep - 60)));
+        drawSprite(ctx, 'player', 0, 440, y);
+      }
+      if (currStep < 61) {
+        playerChar.currentFrame = currStep + 1;
+      }else{
+        playerChar.currentFrame = 0;
+      }
+
       lastFrameTime = now;
     }
     requestAnimationFrame(run);

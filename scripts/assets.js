@@ -150,3 +150,7 @@ sprites['explosion'] = {
   }
 };
 
+sprites['player'] = {
+  source: 'icarusCatSprite',
+  frames: [{ x: 0, y: 0, width: 70, height: 116 }]
+};
