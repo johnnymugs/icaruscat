@@ -115,7 +115,7 @@ keyHandler = {
     var keyCode = this.keys[input[0]];
     var queue = this.queue;
     var prevEl = queue[queue.length - 1] || {x:0,y:100};
-    queue.push({ keyCode: keyCode, x: prevEl.x + 30, y: prevEl.y });
+    queue.push({ keyCode: keyCode, x: prevEl.x + 35, y: prevEl.y });
 
     if (input.length > 1) {
       var that = this;

@@ -40,6 +40,6 @@ game = {
 
 window.onload = function(){
   game.run();
-  keyHandler.loadQueue("abcabcabc");
+  keyHandler.loadQueue("typethewordstomakeexplosion");
   window.onkeyup = keyHandler.handlePress;
 };
