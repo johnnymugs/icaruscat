@@ -1,3 +1,9 @@
+body {
+  background-image: url('../assets/images/simple-bg.png');
+  background-repeat: repeat-x;
+  background-color: #616161;
+}
+
 #main {
   width: 960px;
   height:500px;
