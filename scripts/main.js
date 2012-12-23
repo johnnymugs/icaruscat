@@ -1,13 +1,14 @@
 // clean this up #TODO
 var lastFrameTime = new Date().getTime();
+var playerChar = {};
 
 game = {
   run: function run(){
     var now = new Date().getTime(), dt = now - (lastFrameTime || now);
     if (dt >= 30) {
       var ctx = document.getElementById('game').getContext("2d");
-      ctx.fillStyle = "rgb(100,100,100)";
-      ctx.fillRect (0, 0, 960, 500);
+      var bg = document.getElementById('skyline');
+      ctx.drawImage(bg, 0, 0, 960, 500);
 
       for (var i in keyHandler.queue){
         var el = keyHandler.queue[i];
