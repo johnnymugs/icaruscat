@@ -111,8 +111,9 @@ keyHandler = {
   loadQueue: function loadQueue(input){
     var keyCode = this.keys[input[0]];
     var queue = this.queue;
-    var prevEl = queue[queue.length - 1] || {actor: {x:0}}; // what is that smell? #TODO
-    var actor = new actors.Letter(prevEl.actor.x + 35, 100 + (Math.floor(Math.random()*11)), keyCode);
+    var x = queue[queue.length - 1] ?
+      queue[queue.length - 1].actor.x + 35 : 0;
+    var actor = new actors.Letter(x, 100 + (Math.floor(Math.random()*11)), keyCode);
     queue.push({ keyCode: keyCode, actor: actor });
     actorStack.push(actor);
 
