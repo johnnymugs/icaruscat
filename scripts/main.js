@@ -1,6 +1,5 @@
 // clean this up #TODO
 var lastFrameTime = new Date().getTime();
-var playerChar = {};
 
 game = {
   run: function run(){
@@ -25,21 +24,6 @@ game = {
       }
       actorStack = nextAry;
 
-      // draw player
-      currStep = playerChar.currentFrame || 0;
-      if (currStep < 30) {
-        y = 350 + (1 * currStep);
-        drawSprite(ctx, 'player', 0, 440, y);
-      }else{
-        y = 350 + (1 * (-(currStep - 60)));
-        drawSprite(ctx, 'player', 0, 440, y);
-      }
-      if (currStep < 61) {
-        playerChar.currentFrame = currStep + 1;
-      }else{
-        playerChar.currentFrame = 0;
-      }
-
       lastFrameTime = now;
     }
     requestAnimationFrame(run);
@@ -47,12 +31,10 @@ game = {
 }
 
 // move this polyfill out somewhere
-   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-                                 window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-                                   window.requestAnimationFrame = requestAnimationFrame;
 
 window.onload = function(){
   game.run();
   keyHandler.loadQueue("typethewordstomakeexplosion");
+  actorStack.push(actors.player);
   window.onkeyup = keyHandler.handlePress;
 };

@@ -22,3 +22,24 @@ actors.Explosion = (function() {
   return Explosion;
 
 })();
+
+actors.player = {
+  x : 440,
+  y : 350,
+  currentFrame : 0,
+  active : true,
+  _direction: 0,
+  updateLogic : function updateLogic() {
+    if (this._direction === 0){
+      this.y++;
+    }else{
+      this.y--;
+    }
+
+    if (this.y > 400) { this._direction = 1; }
+    if (this.y < 350) { this._direction = 0; }
+  },
+  spriteInfo : function spriteInfo() {
+    return ['player', this.currentFrame, this.x, this.y]; // generalize this next #TODO
+  }
+};
