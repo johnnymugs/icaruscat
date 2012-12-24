@@ -9,11 +9,6 @@ game = {
       var bg = document.getElementById('skyline');
       ctx.drawImage(bg, 0, 0, 960, 500);
 
-      for (var i in keyHandler.queue){
-        var el = keyHandler.queue[i];
-        drawSprite(ctx, 'regChars', el.keyCode, el.x, el.y, 32, 32);
-      }
-
       var nextAry = [];
       for (var i in actorStack){
         var actor = actorStack[i];
@@ -22,8 +17,8 @@ game = {
         drawSprite.apply(this, [ctx].concat(actor.spriteInfo()));
         if (actor.active){ nextAry.push(actor); }
       }
-      actorStack = nextAry;
 
+      actorStack = nextAry;
       lastFrameTime = now;
     }
     requestAnimationFrame(run);

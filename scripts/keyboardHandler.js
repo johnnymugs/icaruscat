@@ -111,8 +111,10 @@ keyHandler = {
   loadQueue: function loadQueue(input){
     var keyCode = this.keys[input[0]];
     var queue = this.queue;
-    var prevEl = queue[queue.length - 1] || {x:0,y:100};
-    queue.push({ keyCode: keyCode, x: prevEl.x + 35, y: 100 + (Math.floor(Math.random()*11)) });
+    var prevEl = queue[queue.length - 1] || {actor: {x:0}}; // what is that smell? #TODO
+    var actor = new actors.Letter(prevEl.actor.x + 35, 100 + (Math.floor(Math.random()*11)), keyCode);
+    queue.push({ keyCode: keyCode, actor: actor });
+    actorStack.push(actor);
 
     if (input.length > 1) {
       var that = this;
@@ -123,8 +125,10 @@ keyHandler = {
   handlePress: function handlePress(event){
     var currentKey = keyHandler.queue[0];
     if(event.keyCode === currentKey.keyCode){
-      actorStack.push(new actors.Explosion(currentKey.x, currentKey.y));
-      keyHandler.queue.shift();
+      var actor = keyHandler.queue.shift().actor;
+      actorStack.push(new actors.Explosion(actor.x, actor.y));
+      actor.active = false;
+
     }else{ console.warn("wrongzors!") }
   }
 };

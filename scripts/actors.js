@@ -43,3 +43,25 @@ actors.player = {
     return ['player', this.currentFrame, this.x, this.y]; // generalize this next #TODO
   }
 };
+
+actors.Letter = (function() {
+
+  // looks like this is shared among actors
+  function Letter(x, y, keyCode) {
+    this.x = x;
+    this.y = y;
+    this.currentFrame = keyCode; // ...except this... I'd kind of prefer to name this what it is
+    this.active = true;
+  }
+
+  Letter.prototype.updateLogic = function updateLogic() {
+    this.y++;
+  };
+
+  Letter.prototype.spriteInfo = function getSpriteInfo() {
+    return ['regChars', this.currentFrame, this.x, this.y, 32, 32];
+  };
+
+  return Letter;
+
+})();
