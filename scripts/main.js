@@ -16,16 +16,14 @@ game = {
       }
 
       var nextAry = [];
-      for (var i in actors){
-        var el = actors[i];
-        drawSprite(ctx, 'explosion', el.currentFrame, el.x - 40, el.y - 40);
-        if (el.currentFrame === 26){
-        }else{
-          el.currentFrame++;
-          nextAry.push(el);
-        }
+      for (var i in actorStack){
+        var actor = actorStack[i];
+        actor.updateLogic();
+
+        drawSprite.apply(this, [ctx].concat(actor.spriteInfo()));
+        if (actor.active){ nextAry.push(actor); }
       }
-      actors = nextAry;
+      actorStack = nextAry;
 
       // draw player
       currStep = playerChar.currentFrame || 0;

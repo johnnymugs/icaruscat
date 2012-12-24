@@ -1,6 +1,3 @@
-var actors = []; // move this #TODO
-// eventually queue is its own object, not part of the key handler #TODO
-
 keyHandler = {
   queue: [],
   keys: {
@@ -126,7 +123,7 @@ keyHandler = {
   handlePress: function handlePress(event){
     var currentKey = keyHandler.queue[0];
     if(event.keyCode === currentKey.keyCode){
-      actors.push({ x: currentKey.x, y: currentKey.y, currentFrame: 0 });
+      actorStack.push(new actors.Explosion(currentKey.x, currentKey.y));
       keyHandler.queue.shift();
     }else{ console.warn("wrongzors!") }
   }
