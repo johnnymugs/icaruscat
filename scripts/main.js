@@ -26,10 +26,14 @@ game = {
 }
 
 // move this polyfill out somewhere
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+window.requestAnimationFrame = requestAnimationFrame;
 
 window.onload = function(){
-  game.run();
-  keyHandler.loadQueue("typethewordstomakeexplosion");
   actorStack.push(actors.player);
+  keyHandler.loadQueue("typethewordstomakeexplosion");
   window.onkeyup = keyHandler.handlePress;
+
+  game.run();
 };
