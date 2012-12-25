@@ -108,19 +108,21 @@ keyHandler = {
         '>':190,
         '?':191
   },
-  loadQueue: function loadQueue(input){
+  loadQueue: function loadQueue(input, line){
+    line = line || 0;
     var keyCode = this.keys[input[0]];
     var queue = this.queue;
     var x = queue[queue.length - 1] ?
       queue[queue.length - 1].actor.x + 35 : 0;
-    var actor = new actors.Letter(x, 100 + (Math.floor(Math.random()*11)), keyCode);
+    if (x > (25*35)){ x = 0; line++; }
+    var actor = new actors.Letter(x, 100 - (line*60) + (Math.floor(Math.random()*11)), keyCode);
     queue.push({ keyCode: keyCode, actor: actor });
     actorStack.push(actor);
 
     if (input.length > 1) {
       var that = this;
       var cdr = input.substr(1,input.length-1);
-      loadQueue.apply(that, [cdr]);
+      loadQueue.call(that, cdr, line);
     };
   },
   handlePress: function handlePress(event){
