@@ -44,6 +44,25 @@ actors.player = {
   }
 };
 
+actors.crosshairs= {
+  x : 440,
+  y : 350,
+  currentFrame : 0,
+  active : true,
+  _destX : 0,
+  _destY: 0,
+  updateLogic : function updateLogic() {
+    var target = keyHandler.queue[0].actor;
+    if (target.x > this.x) { this.x = this.x + ((target.x - this.x)/4); }
+    if (target.y > this.y) { this.y = this.y + ((target.y - this.y)/4); }
+    if (target.x < this.x) { this.x = this.x - ((this.x - target.x)/4); }
+    if (target.y < this.y) { this.y = this.y - ((this.y - target.y)/4); }
+  },
+  spriteInfo : function spriteInfo() {
+    return ['crosshairs', this.currentFrame, this.x, this.y];
+  }
+};
+
 actors.Letter = (function() {
 
   // looks like this is shared among actors

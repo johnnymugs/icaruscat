@@ -154,3 +154,8 @@ sprites['player'] = {
   source: 'icarusCatSprite',
   frames: [{ x: 0, y: 0, width: 70, height: 116 }]
 };
+
+sprites['crosshairs'] = {
+  source: 'crosshairs',
+  frames: [{ x: 0, y: 0, width: 32, height: 32 }]
+};
